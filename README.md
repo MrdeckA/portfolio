@@ -1,4 +1,9 @@
+
+
 # portfolio
+
+## Description
+This repository is a personal site web of Mériadeck AMOUSSOU
 
 ## Build Setup
 

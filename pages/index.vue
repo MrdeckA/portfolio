@@ -31,21 +31,24 @@
       <section>
         <div class="styled">
           <div class="header-content">
-            <h1>Je suis Mériadeck AMOUSSOU</h1>
-            <p class="my-4 h2 fw transform">
-              Développeur full stack Javascript
-            </p>
-            <v-btn color="primary" class="bg-primary text-light animatedButton"
+            <h1>Hello ! My name is Mériadeck AMOUSSOU</h1>
+            <span class="welcome centered">I'm a </span><span id="typed" class="my-4 h2 fw transform centered welcome1"></span><span id="space"></span>
+
+            
+            <div class="pt-5">
+              <v-btn color="primary" class="bg-primary text-light animatedButton"
               >me connaitre</v-btn
             >
+            </div>
           </div>
           <div>
-            <img src="../assets/images/vue-color-avatar.png" alt="my-picture" />
+            <img class="profil-picture" src="../assets/images/vue-color-avatar.png" alt="my-picture" />
           </div>
         </div>
       </section>
     </header>
-    <section>
+    <!--
+      <section>
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quo
       provident esse porro quod tempore, amet ut nobis nisi? Pariatur distinctio
       ratione dolorem iste provident nam quisquam mollitia voluptatibus culpa.
@@ -65,17 +68,54 @@
         voluptatem eius possimus porro quasi. Fugiat aliquid voluptate cum?
       </h1>
     </section>
+    -->
+
   </div>
 </template>
 <script>
 export default {
+  data(){
+    return{
+      sets: 2
+    }
+  },
   mounted() {
+    this.iterating(`Web Developper`.toUpperCase());
     const hamburger = document.getElementById('hamburger')
     const items = document.getElementById('items')
     hamburger.addEventListener('click', () => {
       items.classList.toggle('displayed')
       hamburger.classList.toggle('hamburger-border')
     })
+  },
+   methods: {
+    iterating(iterating) {
+      let i = 0
+      let chaine = ''
+
+      setInterval(() => {
+        if (i < iterating.length) {
+          chaine = chaine + iterating[i]
+          document.getElementById('typed').innerHTML = chaine
+          i++
+        } else {
+          if(this.sets===1){
+            iterating=(`Web Developper`.toUpperCase())
+            this.sets=2
+          }
+          else if(this.sets===2){
+            iterating=(`Mobile Developper`.toUpperCase())
+            this.sets=3
+          }
+          else if(this.sets===3){
+            iterating=(`Full Stack Javascript Developper`.toUpperCase())
+            this.sets=1
+          }
+          chaine=''
+          i = 0
+        }
+      }, 400)
+    },
   },
 }
 </script>
@@ -164,13 +204,10 @@ h1 a {
     position: relative;
     top: 0.5em
   }
-  25% {
-    position: relative;
-    top: 1em;
-  }
+  
   50% {
     position: relative;
-    top: 2em;
+    top: 1em;
   }
   100% {
     position: relative;
@@ -183,6 +220,12 @@ h1 a {
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+  
+}
+
+
+.header-content h1{
+  font-weight: normal;
 }
 
 @media screen and (max-width: 960px) {
@@ -256,5 +299,39 @@ h1 a {
   
 }
 
+}
+
+.centered {
+
+  font-size: 2em;
+}
+
+.welcome{
+  color: yellow
+}
+.welcome1{
+  color: blue
+}
+
+.profil-picture{
+  padding-bottom: 5em;
+}
+
+#space {
+  padding: 0.4em 0.3em;
+  background-color: white;
+  animation-name: anim;
+  animation-duration: 300ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes anim {
+  0% {
+    background-color: black;
+  }
+  100% {
+    background-color: white;
+  }
 }
 </style>
