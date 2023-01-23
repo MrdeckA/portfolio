@@ -1,7 +1,8 @@
 <template>
   <div>
     <header>
-      <nav class="navigation-bar">
+  
+      <nav id="navigation-bar" class="navigation-bar">
         <h1><a href="#">MERIDEV</a></h1>
         <ul class="navLinks">
           <li class="active"><a href="#" class="actives">HOME</a></li>
@@ -19,7 +20,7 @@
         />
         <div  id="items" class="menu-hamburger">
           <ul>
-          <li><a class="activeNav" href="#">HOME</a></li>
+          <li><a class="actived" href="#">HOME</a></li>
           <li><a href="#">ABOUT</a></li>
           <li><a href="#">SERVICES</a></li>
           <li><a href="#">PORTFOLIO</a></li>
@@ -28,11 +29,13 @@
         </ul>
         </div>
       </nav>
+    
       <section>
-        <div class="styled">
-          <div class="header-content">
-            <h1>Hello ! My name is Mériadeck AMOUSSOU</h1>
-            <span class="welcome centered">I'm a </span><span id="typed" class="my-4 h2 fw transform centered welcome1"></span><span id="space"></span>
+        <div class="row p-0 m-0">
+          <div class="col-md-7 offset-md-1 text-center">
+            <div class="my-lg-5 my-md-3 py-2"></div>
+            <h1 class="h3">Hello ! My name is Mériadeck AMOUSSOU</h1>
+            <span class="welcome h5">I'm a </span><span id="typed" class="my-4 h4 fw transform welcome1"></span><span id="space"></span>
 
             
             <div class="pt-5">
@@ -41,8 +44,8 @@
             >
             </div>
           </div>
-          <div>
-            <img class="profil-picture" src="../assets/images/vue-color-avatar.png" alt="my-picture" />
+          <div class="col-md-4 center-image">
+            <img class="profil-picture img-fluid" src="../assets/images/vue-color-avatar.png" alt="my-picture" />
           </div>
         </div>
       </section>
@@ -83,9 +86,11 @@ export default {
     this.iterating(`Web Developper`.toUpperCase());
     const hamburger = document.getElementById('hamburger')
     const items = document.getElementById('items')
+    const navigationBar=document.getElementById('navigation-bar')
     hamburger.addEventListener('click', () => {
       items.classList.toggle('displayed')
       hamburger.classList.toggle('hamburger-border')
+      navigationBar.classList.toggle('border-bottom')
     })
   },
    methods: {
@@ -114,15 +119,24 @@ export default {
           chaine=''
           i = 0
         }
-      }, 400)
+      }, 200)
     },
   },
 }
 </script>
 <style scoped>
+
+
+ 
+.horizontal-position{
+  align-items: center;
+  align-content: center;
+}
+
+
 header {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-image: url('@/assets/images/bg-gradient.jpg');
   background-size: cover;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -131,10 +145,7 @@ header {
   color: white;
 }
 
-header section {
-  position: relative;
-  top: 3em;
-}
+
 
 .navigation-bar {
   display: flex;
@@ -147,6 +158,7 @@ header section {
 .navLinks {
   list-style-type: none;
   display: flex;
+  margin-top: 1em;
 }
 
 .navLinks li {
@@ -160,10 +172,25 @@ header section {
 .navLinks li :hover {
   background-color: white;
   color: black;
-  padding: 0.5em 2em;
+  padding: 0.2em 2em;
   transition: all 0.5s ease;
   border-radius: 2em;
 }
+
+.active{
+  background-color: white;
+  color: black !important;
+  padding: 0.2em 2em;
+  transition: all 0.5s ease;
+  border-radius: 2em;
+}
+
+.actives{
+  color: black !important;
+  text-decoration: none;
+}
+
+
 
 h1 a {
   color: gold;
@@ -195,7 +222,6 @@ h1 a {
 }
 
 .fw{
-  font-weight: 400;
   color: rgb(125, 158, 249);
 }
 
@@ -222,13 +248,67 @@ h1 a {
   animation-timing-function: linear;
   
 }
+ .border-bottom{
+     border-bottom-style: groove;
+  }
 
 
 .header-content h1{
   font-weight: normal;
 }
+@media screen and (max-width: 500px) {
+   .navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1em !important;
+  height: 5em;
+}
+ .menu-hamburger{
+  top: 5em !important;
+  height: calc(100vh - 5em) !important;
+    
+  }
+
+  
+}
 
 @media screen and (max-width: 960px) {
+
+  
+  .navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2em 3em;
+ 
+}
+
+.header-content h1{
+  font-size: 2em;
+  border-style: groove;
+  
+
+}
+
+.header-content{
+  justify-items: center;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.styled {
+  align-items: center;
+  align-content: center;
+  width: 90%;
+  margin: auto;
+  display: block;
+}
+
+
+
   .navLinks {
     display: none;
   }
@@ -243,6 +323,8 @@ h1 a {
     border-radius: 1em;
     border-width: 1px;
   }
+
+ 
   .menu-hamburger {
     display: block;
     position: absolute;
@@ -250,7 +332,7 @@ h1 a {
     left: 0;
     z-index: 1;
     width: 100%;
-    height: calc(100vh - 6em);
+    height: calc(100vh - 4em) !important;
     margin-left: -100%;
     transition: 0.5s ease;
     justify-content: center;
@@ -265,7 +347,7 @@ h1 a {
 
   .displayed {
     margin-left: 0;
-    transition: 0.5s ease;
+    transition: 300ms ease;
   }
 .menu-hamburger ul{
   display: flex;
@@ -286,7 +368,6 @@ h1 a {
   background-color: white;
   color: black;
   padding: 0.5em 2em;
-  transition: all 0.5s ease;
   border-radius: 2em;
   text-decoration: none;
     box-shadow: inset 0 0 1em gold;
@@ -295,10 +376,17 @@ h1 a {
 }
 .menu-hamburger ul li a:hover{
   background-color: red;
-  transition: 1s ease;
   
 }
 
+.actived{
+  background-color: red !important;
+
+}
+
+}
+.center-image{
+  text-align: center;
 }
 
 .centered {
